@@ -4,3 +4,7 @@
 
 # Python Cache
 __pycache__/
+
+# PipX Temporary Files
+./build
+./*.egg-info
