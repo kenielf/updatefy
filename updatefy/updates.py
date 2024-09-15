@@ -7,7 +7,7 @@ from updatefy.datetime import DATETIME_FMT, now
 from updatefy.log import debug, fatal, info
 from updatefy.notifications import send
 
-MARKER: Path = Path.home() / ".local" / "state" / "updatefy.json"
+MARKER: Path = Path.home() / ".cache" / "updatefy.json"
 MARKER.parent.mkdir(parents=True, exist_ok=True)
 UPDATE_COMMAND: list[str] = ["checkupdates"]
 UPDATE_DAYS: int = 3
