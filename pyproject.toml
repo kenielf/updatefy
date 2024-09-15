@@ -1,0 +1,21 @@
+[build-system]
+requires = [ "setuptools" ]
+build-backend = "setuptools.build_meta"
+
+# Source: https://stackoverflow.com/questions/72294299/multiple-top-level-packages-discovered-in-a-flat-layout
+[tool.setuptools.packages.find]
+exclude = ["legacy"]
+
+[project]
+name = "updatefy"
+description = "A notifier for arch linux package updates"
+version = "1.0.0"
+readme = "README.md"
+requires-python = ">=3.12"
+dynamic = [ "dependencies" ]
+
+[tool.setuptools.dynamic]
+dependencies = { file = [ "requirements.txt" ] }
+
+[project.scripts]
+updatefy = "updatefy.__main__:main"
