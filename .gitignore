@@ -6,5 +6,5 @@
 __pycache__/
 
 # PipX Temporary Files
-./build
-./*.egg-info
+/build
+/*.egg-info
