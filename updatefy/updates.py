@@ -1,9 +1,10 @@
 from datetime import datetime
 from json import dumps, loads
+from os import getenv
 from pathlib import Path
 from subprocess import run
 
-from updatefy.datetime import DATETIME_FMT, now
+from updatefy.datetime import DATETIME_FMT, today, now
 from updatefy.log import debug, fatal, info
 from updatefy.notifications import send
 
@@ -13,13 +14,28 @@ UPDATE_COMMAND: list[str] = ["checkupdates"]
 UPDATE_DAYS: int = 3
 
 
+def needs_checking() -> bool:
+    last_checked: datetime | None = get_last_checked()
+    info(f"Last checked: {last_checked if last_checked else "Never"}")
+
+    # Forced Check
+    if getenv("FORCE_CHECK", "0") == "1":
+        return True
+
+    # Regular Check
+    if not last_checked or (today() - last_checked).days > UPDATE_DAYS:
+        return True
+
+    return False
+
+
 def get_update_history() -> list[str]:
     with open(MARKER, "r") as file:
         return loads(file.read())["history"]
 
 
 # Returns the last update's timestamp
-def get_last_updated() -> datetime | None:
+def get_last_checked() -> datetime | None:
     # If updates have never been checked
     if not MARKER.exists():
         return None

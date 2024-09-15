@@ -9,7 +9,7 @@ exclude = ["legacy"]
 [project]
 name = "updatefy"
 description = "A notifier for arch linux package updates"
-version = "1.0.2"
+version = "1.1.0"
 readme = "README.md"
 requires-python = ">=3.12"
 dynamic = [ "dependencies" ]
