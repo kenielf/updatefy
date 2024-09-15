@@ -2,7 +2,7 @@ from subprocess import run
 
 from updatefy.log import error
 
-NOTIFICATION_TIMEOUT: int = 5000
+NOTIFICATION_TIMEOUT: int = 30000
 NOTIFICATION_ICON: str = r"pamac"
 NOTIFICATION_COMMAND: str = "notify-send"
 
